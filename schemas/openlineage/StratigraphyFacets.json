@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/kylejones200/strat-forward/schemas/openlineage/StratigraphyFacets.json",
+  "title": "strat-forward OpenLineage custom facets",
+  "$defs": {
+    "StratigraphyRunFacet": {
+      "description": "What a forward stratigraphic run did. START carries software and config_source; COMPLETE adds the run's checks and counts.",
+      "allOf": [
+        { "$ref": "https://openlineage.io/spec/2-0-2/OpenLineage.json#/$defs/RunFacet" },
+        {
+          "type": "object",
+          "required": ["software", "config_source"],
+          "properties": {
+            "software": {
+              "type": "object",
+              "required": ["name", "version"],
+              "properties": { "name": { "type": "string" }, "version": { "type": "string" } }
+            },
+            "config_source": {
+              "description": "file: the config was read from the input dataset; built_in_example: no input file.",
+              "enum": ["file", "built_in_example"]
+            },
+            "record_steps": { "type": "integer", "minimum": 1 },
+            "cells": { "type": "integer", "minimum": 3 },
+            "substep_yr": { "type": "number", "exclusiveMinimum": 0 },
+            "max_relative_mass_error": { "type": "number", "minimum": 0, "description": "Largest per-class |initial + supplied - outflow - stored| / supplied." },
+            "ledger_replay_max_diff_m": { "type": "number", "minimum": 0, "description": "Largest difference between surviving units and a replay of the event ledger." },
+            "surface_reconstruction_gap_m": { "type": "number", "minimum": 0, "description": "Largest per-step difference between a surface-only reconstruction and the event record." },
+            "ledger_entries": { "type": "integer", "minimum": 0 },
+            "surviving_units": { "type": "integer", "minimum": 0 },
+            "recycled_fraction": { "type": "number", "minimum": 0, "maximum": 1, "description": "Share of surviving solid that was eroded from a unit and redeposited." },
+            "prov_document": { "type": "string", "description": "File name, in the output directory, of the run's W3C PROV-O document." }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "length_m": 100000.0,
+  "nx": 200,
+  "duration_yr": 2000000.0,
+  "record_dt_yr": 20000.0,
+  "start_age_ma": 12.0,
+  "resolution_m": 0.25,
+  "initial": {
+    "basement": {
+      "ramp": {
+        "top_m": 20.0,
+        "bottom_m": -600.0
+      }
+    },
+    "sediment_solid_m": 0.0
+  },
+  "sea_level": {
+    "base_m": 0.0,
+    "amplitude_m": 30.0,
+    "period_yr": 800000.0,
+    "trend_m_per_yr": 0.00001
+  },
+  "subsidence": {
+    "proximal_m_per_yr": 0.00002,
+    "distal_m_per_yr": 0.00012
+  },
+  "supply": {
+    "flux_m2_per_yr": 6.0,
+    "fractions": [
+      0.4,
+      0.6
+    ]
+  },
+  "transport": {
+    "k_land_m2_per_yr": 3000.0,
+    "k_marine_m2_per_yr": 800.0,
+    "depth_decay_m": 25.0,
+    "k_deep_m2_per_yr": 8.0,
+    "active_layer_m": 1.0,
+    "distal_boundary": "closed",
+    "cfl": 0.4,
+    "shoreline_width_m": 5.0
+  },
+  "classes": [
+    {
+      "name": "sand",
+      "land_k_mult": 1.0,
+      "marine_k_mult": 0.35,
+      "phi0": 0.49,
+      "compaction_length_m": 3700.0
+    },
+    {
+      "name": "mud",
+      "land_k_mult": 1.0,
+      "marine_k_mult": 1.6,
+      "phi0": 0.63,
+      "compaction_length_m": 1960.0
+    }
+  ]
+}
